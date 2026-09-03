@@ -1,0 +1,60 @@
+-- Criar um banco dados e usá-lo
+CREATE DATABASE MLKPs;
+USE MLKPs;
+
+CREATE TABLE turmas (
+	-- INT AUTO_INCREMENT define uma coluna numérica do tipo inteiro
+    -- que gera um número sequencial único
+	id_turma INT AUTO_INCREMENT,
+    -- VARCHAR é um tipo de dado usado para armazenar textos
+	nome_turma VARCHAR(100) NOT NULL,
+    -- NOT NULL é uma restrição que obriga preenchimento de valor
+    curso VARCHAR(100) NOT NULL,
+    
+    -- PRIMARY KEY é uma coluna ou grupo de colunas que identifica
+    -- de forma única cada linha em uma tabela
+    PRIMARY KEY (id_turma)
+);
+
+CREATE TABLE alunos (
+	id_aluno INT AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150),
+    -- DATE armazena valores de data (AAAA-MM-DD)
+    data_nascimento DATE,
+    id_turma INT,
+    
+    PRIMARY KEY (id_aluno),
+    
+    -- é uma coluna ou grupos de colunas em uma tabela que aponta
+    -- para a primary key de outra tabela para ligar os dados entre elas
+    FOREIGN KEY (id_turma)
+		REFERENCES turmas(id_turma)
+
+);
+
+-- Inserção de dados na tabela turmas
+
+INSERT INTO turmas
+(nome_turma, curso)
+VALUES
+('Turma A - Noite', 'Banco de Dados'),
+('Turma B - Manhã', 'Programação'),
+('Turma C - Noite', 'Rede de Computadores');
+
+-- Inserção de dados na tabela alunos
+
+INSERT INTO alunos
+(nome, email, data_nascimento, id_turma)
+VALUES
+('Ana Silva', 'ana@email.com', '2005-03-15', 1),
+('Carlos Souza', 'carlos@email.com', '2004-08-20', 1),
+('Mariana Lima', 'mariana@email.com', '2006-01-10', 2),
+('João Santps', 'joao@email.com', '2005-11-25', 3),
+('Pedro Oliveira', 'Pedro@email.com', '2005-06-10', 1);
+
+-- Consultando uma Tabela
+
+SELECT * FROM Turmas;
+
+SELECT * FROM alunos;
